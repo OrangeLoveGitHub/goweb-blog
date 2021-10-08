@@ -1,9 +1,12 @@
 package model
 
 import (
+	"encoding/base64"
 	"goweb-blog/utils/errmsg"
+	"log"
 
 	"github.com/jinzhu/gorm"
+	"golang.org/x/crypto/scrypt"
 )
 
 type User struct {
@@ -25,6 +28,7 @@ func CheckUser(name string) int {
 
 // add user
 func CreateUser(data *User) int {
+	data.Password = ScryptPw(data.Password)
 	err := db.Create(&data).Error
 	if err != nil {
 		return errmsg.ERROR //500
@@ -43,3 +47,17 @@ func GetUsers(pageSize int, pageNum int) []User {
 }
 
 // edit user
+
+// encrypt password
+func ScryptPw(password string) string {
+	const keyLen = 10
+	salt := make([]byte, 8)
+	salt = []byte{12, 32, 4, 5, 6, 21, 22, 9}
+	HashPw, err := scrypt.Key([]byte(password), salt, 16384, 8, 1, keyLen)
+	if err != nil {
+		log.Fatal(err)
+	}
+	Fpw := base64.StdEncoding.EncodeToString(HashPw)
+	return Fpw
+
+}
