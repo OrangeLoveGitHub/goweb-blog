@@ -13,19 +13,21 @@ const (
 	ERROR_TOKEN_WRONG      = 1006
 	ERROR_TOKEN_TYPE_WRONG = 1007
 	//code = 2000...  article mode error
+	ERROR_CATEGORY_NAME_USED = 2001
 	//code = 3000...  category mode error
 )
 
 var codeMsg = map[int]string{
-	SUCCESS:                "OK",
-	ERROR:                  "FAIL",
-	ERROR_USERNAME_USED:    "usename had been used",
-	ERROR_PASSWORD_WRONG:   "wrong passwd",
-	ERROR_USER_NOT_EXIST:   "use is not exit",
-	ERROR_TOKEN_EXIST:      "token is not exit",
-	ERROR_TOKEN_RUNTIME:    "token had expired",
-	ERROR_TOKEN_WRONG:      "token is wrong",
-	ERROR_TOKEN_TYPE_WRONG: "wrong token type",
+	SUCCESS:                  "OK",
+	ERROR:                    "FAIL",
+	ERROR_USERNAME_USED:      "usename had been used",
+	ERROR_PASSWORD_WRONG:     "wrong passwd",
+	ERROR_USER_NOT_EXIST:     "use is not exit",
+	ERROR_TOKEN_EXIST:        "token is not exit",
+	ERROR_TOKEN_RUNTIME:      "token had expired",
+	ERROR_TOKEN_WRONG:        "token is wrong",
+	ERROR_TOKEN_TYPE_WRONG:   "wrong token type",
+	ERROR_CATEGORY_NAME_USED: "category name is exit",
 }
 
 func GetErrMsg(code int) string {

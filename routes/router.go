@@ -19,7 +19,10 @@ func InitRouter() {
 		router.PUT("user/:id", v1.EditUser)
 		router.DELETE("user/:id", v1.DeleteUser)
 		// category model router
-
+		router.POST("category/add", v1.AddCategory)
+		router.GET("category", v1.GetCategory)
+		router.PUT("category/:id", v1.EditCategory)
+		router.DELETE("category/:id", v1.DeleteCategory)
 		// article model  router
 	}
 	r.Run(utils.HttpPort)
